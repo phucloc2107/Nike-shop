@@ -22,6 +22,7 @@ const ShoppingCartTotals = () => (
     </View>
 )
 
+
 const ShoppingCart = () => {
     return (
         <>
