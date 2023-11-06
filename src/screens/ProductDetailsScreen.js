@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import products from '../data/products';
-
+import { useSelector } from 'react-redux';
 
 const ProductDetailsScreen = () => {
-    const product = products[0];
+    const product = useSelector((state) => state.products.selectedProduct);
 
     const { width } = useWindowDimensions();
 
@@ -34,7 +34,7 @@ const ProductDetailsScreen = () => {
                     <Text style={styles.title}>{product.name}</Text>
 
                     {/* Price */}
-                    <Text style={styles.price}>{product.price}</Text>
+                    <Text style={styles.price}>$ {product.price}</Text>
 
                     {/* Description */}
                     <Text style={styles.description}>{product.description}</Text>
