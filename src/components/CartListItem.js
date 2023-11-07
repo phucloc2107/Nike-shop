@@ -1,7 +1,28 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import { useDispatch } from 'react-redux';
+import { cartSlice } from '../store/cartSlice';
 
 const CartListItem = ({ cartItem }) => {
+    const dispatch = useDispatch();
+
+    const increaseQuantity = () => {
+        dispatch(
+            cartSlice.actions.changeQuantity({
+                productId: cartItem.product.id,
+                amount: 1,
+            })
+        );
+    };
+
+    const decreaseQuantity = () => {
+        dispatch(
+            cartSlice.actions.changeQuantity({
+                productId: cartItem.product.id,
+                amount: -1,
+            })
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -13,14 +34,14 @@ const CartListItem = ({ cartItem }) => {
 
                 <View style={styles.footer}>
                     <Feather
-
+                        onPress={decreaseQuantity}
                         name="minus-circle"
                         size={24}
                         color="gray"
                     />
                     <Text style={styles.quantity}>{cartItem.quantity}</Text>
                     <Feather
-
+                        onPress={increaseQuantity}
                         name="plus-circle"
                         size={24}
                         color="gray"
